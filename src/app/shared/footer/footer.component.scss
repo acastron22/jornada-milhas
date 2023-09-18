@@ -1,12 +1,33 @@
-.footer{
+footer {
+  padding: 0 256px;
   background: #1D1B20;
-  height: 15vh;
-  width: 100%;
-  .logoTexto{
-    margin:0 10rem;
-    img{
+  display: flex;
+  height: 232px;
+  justify-content: space-between;
+  align-items:center;
+  .logoTexto {
+    img {
       max-width: 100%;
-      width: 10%;
+      width: 50%;
     }
   }
+
+  .footerText {
+    color: #fff;
+    margin: 5px 0
+  }
+
+  .footerRedesSociais {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    .imageIcons{
+      img{
+      margin: 0px 5px
+    }}
+    //   img{
+    //     // margin: 0 2px;
+  }
+
+
 }
