@@ -1,1 +1,19 @@
-<app-card variant="secondary">vsdvsdvdsvsd</app-card>
+<app-card variant="secondary" class="form-busca">
+  <form>
+    <h2>Passagens</h2>
+    <div class="flex-container">
+      <mat-button-toggle-group aria-label="tipo de passagem">
+        <mat-button-toggle>
+          <mat-icon>check</mat-icon> IDA E VOLTA</mat-button-toggle
+        >
+        <mat-button-toggle>SOMENTE IDA</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip-option>One fish</mat-chip-option>
+        <mat-chip-option>Two fish</mat-chip-option>
+        <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
+        <mat-chip-option color="warn">Warn fish</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+  </form>
+</app-card>

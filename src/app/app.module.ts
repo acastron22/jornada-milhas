@@ -18,6 +18,9 @@ import { CardDepoimentosComponent } from './shared/card-depoimentos/card-depoime
 import { FormBuscaComponent } from './shared/form-busca/form-busca.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @NgModule({
   declarations: [
@@ -35,12 +38,14 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatButtonToggleModule,
     MatIconModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
