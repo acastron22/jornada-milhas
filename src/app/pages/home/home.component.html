@@ -5,21 +5,20 @@
 <app-container>
   <h2>Promoções</h2>
   <app-form-busca></app-form-busca>
-  <div class="card-wrapper">
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
-    <app-card-busca></app-card-busca>
+  <div *ngIf="promocoes.length > 0; else semPromocao" class="card-wrapper">
+    <app-card-busca
+      *ngFor="let promocao of promocoes"
+      [destino]="promocao.destino"
+      [preco]="promocao.preco"
+      [imagem]="promocao.imagem"
+    ></app-card-busca>
   </div>
+  <ng-template #semPromocao>
+    <span>Sem promoções encontradas. Volte mais tarde!</span>
+  </ng-template>
 
   <h2>Depoimentos</h2>
   <div class="card-wrapper-depoimento">
-
     <app-card-depoimentos></app-card-depoimentos>
     <app-card-depoimentos></app-card-depoimentos>
     <app-card-depoimentos></app-card-depoimentos>
