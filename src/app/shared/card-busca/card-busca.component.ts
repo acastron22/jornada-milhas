@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IPromocao } from 'src/app/core/models/iPromocao';
 
 @Component({
   selector: 'app-card-busca',
@@ -6,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card-busca.component.scss']
 })
 export class CardBuscaComponent{
-  @Input()destino:string = ''
-  @Input()imagem:string = ''
-  @Input()preco:number = 0
+  @Input()promocao!:IPromocao
 
   constructor() { }
 

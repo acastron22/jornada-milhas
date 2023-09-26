@@ -8,9 +8,7 @@
   <div *ngIf="promocoes.length > 0; else semPromocao" class="card-wrapper">
     <app-card-busca
       *ngFor="let promocao of promocoes"
-      [destino]="promocao.destino"
-      [preco]="promocao.preco"
-      [imagem]="promocao.imagem"
+      [promocao]="promocao"
     ></app-card-busca>
   </div>
   <ng-template #semPromocao>
