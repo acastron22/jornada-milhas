@@ -9,12 +9,16 @@ import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
   templateUrl: './form-busca.component.html',
   styleUrls: ['./form-busca.component.scss'],
 })
-export class FormBuscaComponent {
+export class FormBuscaComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public formBuscaService: FormBuscaService
   ) {}
   openDialog() {
     this.dialog.open(ModalComponent);
+  }
+
+  ngOnInit(): void {
+    
   }
 }

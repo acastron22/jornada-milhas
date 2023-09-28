@@ -25,19 +25,21 @@
     </div>
 
     <div class="flex-container">
-      <mat-form-field class="input-container" appearance="outline">
+      <!-- <mat-form-field class="input-container" appearance="outline">
         <mat-label>Origem</mat-label>
         <mat-icon matPrefix>flight_takeoff</mat-icon>
         <input matInput placeholder="Origem" />
         <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-dropdown-uf [matPrefix]="'flight_takeoff'" [label]="'Origem'"/>
       <button mat-icon-button><mat-icon>sync_alt</mat-icon></button>
-      <mat-form-field class="input-container" appearance="outline">
+      <app-dropdown-uf  [matPrefix]="'flight_land'" [label]="'Destino'"/>
+      <!-- <mat-form-field class="input-container" appearance="outline">
         <mat-label>Destino</mat-label>
         <mat-icon matPrefix>flight_land</mat-icon>
         <input matInput placeholder="Destino" />
         <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field
         class="input-container"
