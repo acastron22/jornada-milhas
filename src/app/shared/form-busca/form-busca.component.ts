@@ -11,14 +11,9 @@ import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
 })
 export class FormBuscaComponent implements OnInit {
   constructor(
-    public dialog: MatDialog,
     public formBuscaService: FormBuscaService
   ) {}
-  openDialog() {
-    this.dialog.open(ModalComponent);
-  }
 
-  ngOnInit(): void {
-    
-  }
+
+  ngOnInit(): void {}
 }

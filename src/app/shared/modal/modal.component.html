@@ -2,16 +2,22 @@
   <h1 mat-dialog-title>Viajante</h1>
   <div mat-dialog-content>
     <div class="selecao-idade">
-      <ul>
-        <li>Adultos</li>
-        <li>(Acima de 12 anos)</li>
-        <li>
-          <app-botao-controle operacao="decrementar"></app-botao-controle>
-          <span>1</span>
-          <app-botao-controle operacao="incrementar"></app-botao-controle>
-        </li>
-      </ul>
-      <ul>
+      <app-seletor-passageiro
+        [Pessoa]="'Adultos'"
+        [FaixaIdade]="'Acima de 12 anos'"
+        [quantidade]="1"
+      />
+      <app-seletor-passageiro
+        [Pessoa]="'Crianças'"
+        [FaixaIdade]="'Entre 2 e 11 anos'"
+        [quantidade]="0"
+      />
+      <app-seletor-passageiro
+        [Pessoa]="'Bebes'"
+        [FaixaIdade]="'Até 2 anos'"
+        [quantidade]="0"
+      />
+      <!-- <ul>
         <li>Crianças</li>
         <li>(Entre 2 e 11 anos)</li>
         <li>
@@ -28,13 +34,28 @@
           <span>1</span>
           <app-botao-controle operacao="incrementar"></app-botao-controle>
         </li>
-      </ul>
+      </ul> -->
     </div>
     <div class="selecao-categoria">
       <p><strong>Categoria</strong></p>
       <mat-chip-listbox aria-label="Seleção de passagens">
-        <mat-chip-option selected>1 adulto</mat-chip-option>
-        <mat-chip-option>Econômica</mat-chip-option>
+        <mat-chip-option
+          value="Econômica"
+          [selected]="
+            formBuscaService.formBusca.get('tipo')?.value === 'Econômica'
+          "
+          (selectionChange)="formBuscaService.alterarTipo($event, 'Econômica')"
+        >
+          Econômica
+        </mat-chip-option>
+        <mat-chip-option
+          value="Executiva"
+          [selected]="
+            formBuscaService.formBusca.get('tipo')?.value === 'Executiva'
+          "
+          (selectionChange)="formBuscaService.alterarTipo($event, 'Executiva')"
+          >Executiva</mat-chip-option
+        >
       </mat-chip-listbox>
     </div>
   </div>
