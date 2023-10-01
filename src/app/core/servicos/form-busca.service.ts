@@ -15,7 +15,7 @@ export class FormBuscaService {
       somenteIda: new FormControl(false),
       origem: new FormControl(null),
       destino: new FormControl(null),
-      tipo: new FormControl('Executiva'),
+      tipo: new FormControl('Econômica'),
       adultos: new FormControl(1),
       criancas: new FormControl(0),
       bebes: new FormControl(0),
@@ -47,6 +47,12 @@ export class FormBuscaService {
     return descricao;
   }
 
+  getDescricaoPassagem() {
+    let tipo = this.formBusca.get('tipo')?.value;
+
+    return tipo;
+  }
+
   obterControle(nome: string): FormControl {
     const control = this.formBusca.get(nome);
     if (!control) {
@@ -62,6 +68,15 @@ export class FormBuscaService {
       });
     }
     console.log('tipo de passagem alterada para: ' + tipo);
+  }
+
+  alterarValorOrigemDestino() {
+    let origem = this.formBusca.get('origem')?.value;
+    let destino = this.formBusca.get('destino')?.value;
+
+    this.formBusca.get('destino')?.setValue(origem);
+    this.formBusca.get('origem')?.setValue(destino);
+    console.log(origem, destino);;
   }
 
   openDialog() {

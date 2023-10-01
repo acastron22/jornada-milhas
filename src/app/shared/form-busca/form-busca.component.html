@@ -1,5 +1,5 @@
 <app-card variant="secondary" class="form-busca">
-  <form [formGroup]="formBuscaService.formBusca">
+  <form [formGroup]="formBuscaService.formBusca" (ngSubmit)="buscar()">
     <h2>Passagens</h2>
     <div class="flex-container">
       <mat-button-toggle-group
@@ -19,28 +19,15 @@
         >
       </mat-button-toggle-group>
       <mat-chip-listbox (click)="formBuscaService.openDialog()" aria-label="Seleção">
-        <mat-chip-option selected>1 Adulto</mat-chip-option>
-        <mat-chip-option>Econômica</mat-chip-option>
+        <mat-chip-option>{{formBuscaService.getDescricaoPassageiros()}}</mat-chip-option>
+        <mat-chip-option> {{formBuscaService.getDescricaoPassagem()}}</mat-chip-option>
       </mat-chip-listbox>
     </div>
 
     <div class="flex-container">
-      <!-- <mat-form-field class="input-container" appearance="outline">
-        <mat-label>Origem</mat-label>
-        <mat-icon matPrefix>flight_takeoff</mat-icon>
-        <input matInput placeholder="Origem" />
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field> -->
       <app-dropdown-uf [matPrefix]="'flight_takeoff'" [label]="'Origem'" [control]="formBuscaService.obterControle('origem')"/>
-      <button mat-icon-button><mat-icon>sync_alt</mat-icon></button>
+      <button type="button" (click)="trocarValores()" mat-icon-button><mat-icon>sync_alt</mat-icon></button>
       <app-dropdown-uf  [matPrefix]="'flight_land'" [label]="'Destino'" [control]="formBuscaService.obterControle('destino')"/>
-      <!-- <mat-form-field class="input-container" appearance="outline">
-        <mat-label>Destino</mat-label>
-        <mat-icon matPrefix>flight_land</mat-icon>
-        <input matInput placeholder="Destino" />
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field> -->
-
       <mat-form-field
         class="input-container"
         appearance="outline"

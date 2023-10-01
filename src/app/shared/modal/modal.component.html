@@ -6,35 +6,20 @@
         [Pessoa]="'Adultos'"
         [FaixaIdade]="'Acima de 12 anos'"
         [quantidade]="1"
+        [formControl]="formBuscaService.obterControle('adultos')"
       />
       <app-seletor-passageiro
         [Pessoa]="'Crianças'"
         [FaixaIdade]="'Entre 2 e 11 anos'"
         [quantidade]="0"
+        [formControl]="formBuscaService.obterControle('criancas')"
       />
       <app-seletor-passageiro
-        [Pessoa]="'Bebes'"
+        [Pessoa]="'Bebês'"
         [FaixaIdade]="'Até 2 anos'"
         [quantidade]="0"
+        [formControl]="formBuscaService.obterControle('bebes')"
       />
-      <!-- <ul>
-        <li>Crianças</li>
-        <li>(Entre 2 e 11 anos)</li>
-        <li>
-          <app-botao-controle operacao="decrementar"></app-botao-controle>
-          <span>0</span>
-          <app-botao-controle operacao="incrementar"></app-botao-controle>
-        </li>
-      </ul>
-      <ul>
-        <li>Bebês</li>
-        <li>(Até 2 anos)</li>
-        <li>
-          <app-botao-controle operacao="decrementar"></app-botao-controle>
-          <span>1</span>
-          <app-botao-controle operacao="incrementar"></app-botao-controle>
-        </li>
-      </ul> -->
     </div>
     <div class="selecao-categoria">
       <p><strong>Categoria</strong></p>
