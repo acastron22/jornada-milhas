@@ -18,16 +18,39 @@
           >SOMENTE IDA</mat-button-toggle
         >
       </mat-button-toggle-group>
-      <mat-chip-listbox (click)="formBuscaService.openDialog()" aria-label="Seleção">
-        <mat-chip-option>{{formBuscaService.getDescricaoPassageiros()}}</mat-chip-option>
-        <mat-chip-option> {{formBuscaService.getDescricaoPassagem()}}</mat-chip-option>
+      <mat-chip-listbox
+        (click)="formBuscaService.openDialog()"
+        aria-label="Seleção"
+      >
+        <mat-chip-option>{{
+          formBuscaService.getDescricaoPassageiros()
+        }}</mat-chip-option>
+        <mat-chip-option>
+          {{ formBuscaService.getDescricaoPassagem() }}</mat-chip-option
+        >
       </mat-chip-listbox>
     </div>
 
     <div class="flex-container">
-      <app-dropdown-uf [matPrefix]="'flight_takeoff'" [label]="'Origem'" [control]="formBuscaService.obterControle('origem')"/>
-      <button type="button" (click)="trocarValores()" mat-icon-button><mat-icon>sync_alt</mat-icon></button>
-      <app-dropdown-uf  [matPrefix]="'flight_land'" [label]="'Destino'" [control]="formBuscaService.obterControle('destino')"/>
+      <div class="drop-container">
+        <app-dropdown-uf
+          [placeholder]="'Origem'"
+          [matPrefix]="'flight_takeoff'"
+          [label]="'Origem'"
+          [control]="formBuscaService.obterControle('origem')"
+        />
+      </div>
+      <button type="button" (click)="trocarValores()" mat-icon-button>
+        <mat-icon>sync_alt</mat-icon>
+      </button>
+      <div class="drop-container">
+        <app-dropdown-uf
+          [placeholder]="'Destino'"
+          [matPrefix]="'flight_land'"
+          [label]="'Destino'"
+          [control]="formBuscaService.obterControle('destino')"
+        />
+      </div>
       <mat-form-field
         class="input-container"
         appearance="outline"
