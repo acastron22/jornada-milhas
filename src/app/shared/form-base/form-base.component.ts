@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IEstados } from 'src/app/core/models/IEstados';
+import { FormularioService } from 'src/app/core/servicos/formulario.service';
 
 @Component({
   selector: 'app-form-base',
@@ -18,7 +19,7 @@ export class FormBaseComponent implements OnInit {
   @Input() perfilComponent!: boolean;
   @Output() acaoClique: EventEmitter<any>= new EventEmitter<any>
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private formularioService:FormularioService) {}
 
   ngOnInit(): void {
     this.cadastroForm = this.fb.group({
@@ -35,9 +36,13 @@ export class FormBaseComponent implements OnInit {
       confirmarSenha: [null, [Validators.required, Validators.minLength(3)]],
       aceitarTermos: [null, Validators.requiredTrue],
     });
+
+
+    this.formularioService.setCadastro(this.cadastroForm)
   }
 
   executarAcao() {
+    console.log(this.cadastroForm)
     this.acaoClique.emit()
   }
 }
