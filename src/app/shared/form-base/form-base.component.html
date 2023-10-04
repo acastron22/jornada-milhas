@@ -94,11 +94,13 @@
               <input matInput formControlName="confirmarEmail" placeholder="Digite seu e-mail novamente">
               <mat-error *ngIf="cadastroForm.get('confirmarEmail')?.errors?.['required']">Confirmação de E-mail é obrigatória</mat-error>
               <mat-error *ngIf="cadastroForm.get('confirmarEmail')?.errors?.['email']">E-mail inválido</mat-error>
+              <mat-error *ngIf="cadastroForm.get('confirmarEmail')?.errors?.['equalTo']">E-mail e confirmar e-mail não são iguais</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Confirmar Senha</mat-label>
               <input matInput formControlName="confirmarSenha" type="password" placeholder="Repita sua senha">
               <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.errors?.['required']">Confirmação de Senha é obrigatória</mat-error>
+              <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.errors?.['equalTo']">As Senhas não são iguais</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -109,7 +111,7 @@
       </mat-card-content>
       <mat-card-actions class="full-width">
         <button mat-flat-button
-          
+          [disabled]="cadastroForm.invalid"
           color="primary"
           (click)="executarAcao()"
         >CADASTRAR
