@@ -29,20 +29,18 @@ export class FormBaseComponent implements OnInit {
       cidade: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       senha: [null, [Validators.required, Validators.minLength(3)]],
-      genero: ['outro'],
+      genero: [null],
       telefone: [null, Validators.required],
-      estado: [this.estadoControl],
+      estado: this.estadoControl,
       confirmarEmail: [null, [Validators.required, Validators.email]],
       confirmarSenha: [null, [Validators.required, Validators.minLength(3)]],
       aceitarTermos: [null, Validators.requiredTrue],
     });
 
-
     this.formularioService.setCadastro(this.cadastroForm)
   }
 
   executarAcao() {
-    console.log(this.cadastroForm)
     this.acaoClique.emit()
   }
 }

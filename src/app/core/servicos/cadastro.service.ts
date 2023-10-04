@@ -12,7 +12,7 @@ export class CadastroService {
 
   constructor(private http: HttpClient) {}
 
-  cadastrar(cadastro: ICadastro): Observable<ICadastro> {
-    return this.http.post<ICadastro>(`${this.apiUrl}/auth/cadastro`, cadastro);
+  cadastrar(pessoaUsuaria: ICadastro): Observable<ICadastro> {
+    return this.http.post<ICadastro>(`${this.apiUrl}/auth/cadastro`, pessoaUsuaria);
   }
 }

@@ -19,15 +19,16 @@ export class CadastroComponent {
   ) {}
 
   cadastrar() {
-    const formCadastro = this.formularioService.getCadastro()?.value;
+    const formCadastro = this.formularioService.getCadastro();
     if (formCadastro?.valid){
       const novoCadastro = formCadastro.getRawValue() as ICadastro
+      console.log(novoCadastro)
       this.cadastroService.cadastrar(novoCadastro).subscribe({
         next: (value) => {
           console.log('cadastro realizado com sucesso', value);
         },
-        error: (err) => {
-          console.log(err);
+        error: (error) => {
+          console.log(error);
         },
         complete: () => {
           console.log('completado o subscribe');
