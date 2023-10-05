@@ -28,19 +28,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginUsuario = this.loginForm.value;
-    this.authService.autenticar(this.loginUsuario).subscribe({
-      next: (value: ILogin) => {
-        console.log('login realizado com sucesso', value);
-        this.router.navigateByUrl('/');
-      },
-      error: () => {
-        console.log('login sem sucesso');
-      },
-      complete: () => {
-        console.log('login realizado com sucesso');
-      },
-    });
+    if (this.loginForm.valid) {
+      const email = this.loginForm.value.email;
+      const senha = this.loginForm.value.senha;
+      this.authService.autenticar(email, senha).subscribe({
+        next: (value) => {
+          console.log('Autenticado com sucesso', value);
+          this.router.navigateByUrl('/');
+          this.loginForm.reset();
+        },
+        error: (err) => {
+          console.log('Problema na autenticação', err);
+        },
+        complete: () => {},
+      });
+    }
   }
-  
 }

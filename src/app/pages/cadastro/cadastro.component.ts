@@ -26,6 +26,7 @@ export class CadastroComponent {
       this.cadastroService.cadastrar(novoCadastro).subscribe({
         next: (value) => {
           console.log('cadastro realizado com sucesso', value);
+          this.router.navigate(['/login'])
         },
         error: (error) => {
           console.log(error);
