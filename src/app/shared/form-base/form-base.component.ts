@@ -18,9 +18,14 @@ export class FormBaseComponent implements OnInit {
   cadastroForm!: FormGroup;
   estadoControl = new FormControl<IEstados | null>(null, Validators.required);
   @Input() perfilComponent!: boolean;
-  @Output() acaoClique: EventEmitter<any>= new EventEmitter<any>
+  @Input() titulo: string = '';
+  @Input() textoBotao: string = '';
+  @Output() acaoClique: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder, private formularioService:FormularioService) {}
+  constructor(
+    private fb: FormBuilder,
+    private formularioService: FormularioService
+  ) {}
 
   ngOnInit(): void {
     this.cadastroForm = this.fb.group({
@@ -33,15 +38,29 @@ export class FormBaseComponent implements OnInit {
       genero: [null],
       telefone: [null, Validators.required],
       estado: this.estadoControl,
-      confirmarEmail: [null, [Validators.required, Validators.email, FormValidations.equalTo('email')]],
-      confirmarSenha: [null, [Validators.required, Validators.minLength(3), FormValidations.equalTo('senha')]],
+      confirmarEmail: [
+        null,
+        [
+          Validators.required,
+          Validators.email,
+          FormValidations.equalTo('email'),
+        ],
+      ],
+      confirmarSenha: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          FormValidations.equalTo('senha'),
+        ],
+      ],
       aceitarTermos: [null, Validators.requiredTrue],
     });
 
-    this.formularioService.setCadastro(this.cadastroForm)
+    this.formularioService.setCadastro(this.cadastroForm);
   }
 
   executarAcao() {
-    this.acaoClique.emit()
+    this.acaoClique.emit();
   }
 }
