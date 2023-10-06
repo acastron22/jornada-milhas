@@ -1,15 +1,21 @@
+import { Router } from '@angular/router';
+import { UserService } from './../../core/servicos/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  constructor(private userService: UserService, private router: Router) {}
 
-  constructor() { }
+  user$ = this.userService.retornarUser();
 
-  ngOnInit(): void {
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/']);
   }
 
+  ngOnInit(): void {}
 }

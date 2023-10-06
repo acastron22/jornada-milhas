@@ -19,25 +19,19 @@ export class CadastroService {
     );
   }
 
-  buscarCadastro(token: string): Observable<ICadastro> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+  buscarCadastro(): Observable<ICadastro> {
 
-    return this.http.get<ICadastro>(`${this.apiUrl}/auth/perfil`, { headers });
+    return this.http.get<ICadastro>(`${this.apiUrl}/auth/perfil`);
   }
+
   editarCadastro(
     pessoaUsuaria: ICadastro,
-    token: string
   ): Observable<ICadastro> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
 
     return this.http.patch<ICadastro>(
       `${this.apiUrl}/auth/perfil`,
-      pessoaUsuaria,
-      { headers }
+      pessoaUsuaria
+
     );
   }
 }

@@ -14,4 +14,10 @@
   .mat-stroked-button:not(.mat-button-disabled) {
     border-color: #fff;
   }
+  .links-toolbar{
+    justify-content: center;
+    display: flex;
+    /* align-self: flex-end; */
+    align-items: center;
+  }
 }
