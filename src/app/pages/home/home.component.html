@@ -4,7 +4,7 @@
 ></app-banner>
 <app-container>
   <h2>Promoções</h2>
-  <app-form-busca></app-form-busca>
+  <app-form-busca (realizarBusca)="navegarParaBusca($event)"></app-form-busca>
   <div *ngIf="promocoes.length > 0; else semPromocao" class="card-wrapper">
     <app-card-busca
       *ngFor="let promocao of promocoes"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
@@ -10,17 +10,18 @@ import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
   styleUrls: ['./form-busca.component.scss'],
 })
 export class FormBuscaComponent implements OnInit {
-  constructor(
-    public formBuscaService: FormBuscaService
-  ) {}
+  @Output() realizarBusca = new EventEmitter();
+
+  constructor(public formBuscaService: FormBuscaService) {}
   ngOnInit(): void {}
 
-  buscar(){
-    console.log(this.formBuscaService.formBusca.value)
+  buscar() {
+    const formBuscaValue = this.formBuscaService.formBusca.value;
+    this.realizarBusca.emit(formBuscaValue);
   }
 
-  trocarValores(){
-    console.log('trocando valores')
-    this.formBuscaService.alterarValorOrigemDestino()
+  trocarValores() {
+    console.log('trocando valores');
+    this.formBuscaService.alterarValorOrigemDestino();
   }
 }
