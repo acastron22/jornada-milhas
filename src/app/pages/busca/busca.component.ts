@@ -24,6 +24,8 @@ export class BuscaComponent implements OnInit {
     this.passagemService.getPassagens(buscaPadrao).subscribe((res) => {
       console.log(res);
       this.passagens = res.resultado;
+      alert(`ha um total de ${this.passagens.length} passagens `);
     });
+
   }
 }
