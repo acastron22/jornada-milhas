@@ -57,7 +57,7 @@
         color="primary"
       >
         <mat-label>Data da ida</mat-label>
-        <input matInput [matDatepicker]="ida" />
+        <input matInput [matDatepicker]="ida" formControlName="dataIda" />
         <mat-datepicker-toggle
           matIconSuffix
           [for]="ida"
@@ -70,7 +70,7 @@
         color="primary"
       >
         <mat-label>Data da volta</mat-label>
-        <input matInput [matDatepicker]="volta" />
+        <input matInput [matDatepicker]="volta" formControlName="dataVolta"/>
         <mat-datepicker-toggle
           matIconSuffix
           [for]="volta"

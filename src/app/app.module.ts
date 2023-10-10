@@ -42,6 +42,12 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AutenticacaoInterceptor } from './core/interceptors/autenticacao.interceptor';
 import { BuscaComponent } from './pages/busca/busca.component';
 import { PassagemComponent } from './shared/passagem/passagem.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { FiltrosComplementaresComponent } from './shared/form-busca/filtros-complementares/filtros-complementares.component';
+import { CompanhiasComponent } from './shared/form-busca/filtros-complementares/companhias/companhias.component';
+import { LabelComponent } from './shared/form-busca/filtros-complementares/label/label.component';
+import { ParadasComponent } from './shared/form-busca/filtros-complementares/paradas/paradas.component';
+import { PrecosComponent } from './shared/form-busca/filtros-complementares/precos/precos.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +71,11 @@ import { PassagemComponent } from './shared/passagem/passagem.component';
     PerfilComponent,
     BuscaComponent,
     PassagemComponent,
+    FiltrosComplementaresComponent,
+    CompanhiasComponent,
+    LabelComponent,
+    ParadasComponent,
+    PrecosComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +99,7 @@ import { PassagemComponent } from './shared/passagem/passagem.component';
     MatRadioModule,
     MatDividerModule,
     MatCheckboxModule,
+    MatSliderModule
   ],
   providers: [
     {

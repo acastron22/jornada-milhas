@@ -16,8 +16,12 @@ export class FormBuscaComponent implements OnInit {
   ngOnInit(): void {}
 
   buscar() {
-    const formBuscaValue = this.formBuscaService.formBusca.value;
-    this.realizarBusca.emit(formBuscaValue);
+    if (this.formBuscaService.formValid) {
+      const formBuscaValue = this.formBuscaService.obterDadosDeBusca();
+      this.realizarBusca.emit(formBuscaValue);
+    } else {
+      alert('O formulário precisa ser preenchido por completo');
+    }
   }
 
   trocarValores() {
