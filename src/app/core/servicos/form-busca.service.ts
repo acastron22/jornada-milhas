@@ -14,7 +14,7 @@ export class FormBuscaService {
 
   constructor(private dialog: MatDialog) {
     const somenteIda = new FormControl(false, [Validators.required]);
-    const dataVolta = new FormControl(new Date, [Validators.required]);
+    const dataVolta = new FormControl(new Date(), [Validators.required]);
 
     this.formBusca = new FormGroup({
       somenteIda,
@@ -24,8 +24,9 @@ export class FormBuscaService {
       adultos: new FormControl(1),
       criancas: new FormControl(0),
       bebes: new FormControl(0),
-      dataIda: new FormControl(new Date, [Validators.required]),
+      dataIda: new FormControl(new Date(), [Validators.required]),
       dataVolta,
+      conexoes: new FormControl(null)
     });
 
     somenteIda.valueChanges.subscribe((somenteida) => {
@@ -33,7 +34,7 @@ export class FormBuscaService {
         dataVolta.disable();
         dataVolta.setValidators(null);
       } else {
-        console.log('HabilitarDataVOlta');
+        console.log('HabilitarDataVolta');
         dataVolta.enable();
         dataVolta.setValidators([Validators.required]);
       }
@@ -85,23 +86,20 @@ export class FormBuscaService {
     const dadosBusca: DadosDeBusca = {
       pagina: 1,
       porPagina: 50,
+      dataIda: dataIdaControl.toISOString(),
+      passageirosAdultos: this.obterControle<number>('adultos').value,
+      passageirosCriancas: this.obterControle<number>('criancas').value,
+      passageirosBebes: this.obterControle<number>('bebes').value,
       somenteIda: this.obterControle<boolean>('somenteIda').value,
       origemId: this.obterControle<number>('origem').value.id,
       destinoId: this.obterControle<number>('destino').value.id,
       tipo: this.obterControle<string>('tipo').value,
-      passageirosAdultos:
-        this.obterControle<number>('adultos').value,
-      passageirosCriancas: this.obterControle<number>('criancas')
-        .value,
-      passageirosBebes: this.obterControle<number>('bebes').value,
-      dataIda: dataIdaControl.value.toISOString(),
-      conexoes: this.obterControle<string>('conexoes').value
     };
 
-    const dataVoltaControl = this.obterControle<Date>('dataVolta');
+    const dataVoltaControl = this.obterControle<Date>('dataVolta').value;
 
     if (dataVoltaControl.value) {
-      dadosBusca.dataVolta = dataVoltaControl.value.toISOString()
+      dadosBusca.dataVolta = dataVoltaControl.toISOString();
     }
 
     const conexoesControl = this.obterControle<number>('conexoes');
