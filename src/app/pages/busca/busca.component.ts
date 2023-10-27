@@ -1,8 +1,10 @@
+import { take } from 'rxjs';
 import { iPassagens } from './../../core/models/ipassagens';
 import { Component, OnInit } from '@angular/core';
 import { DadosDeBusca } from 'src/app/core/models/dados-de-busca';
 import { BuscarService } from 'src/app/core/servicos/buscar.service';
 import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
+import { PassagensService } from 'src/app/core/servicos/passagens.service';
 
 @Component({
   selector: 'app-busca',
@@ -12,13 +14,13 @@ import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
 export class BuscaComponent implements OnInit {
   passagens: iPassagens[] = [];
   constructor(
-    private passagemService: BuscarService,
+    private passagemService: PassagensService,
     private formBusca: FormBuscaService
   ) {}
 
   ngOnInit(): void {
-    const buscaPadrao = {
-      data: new Date().toISOString(),
+    const buscaPadrao: DadosDeBusca = {
+      dataIda: new Date().toISOString(),
       pagina: 1,
       porPagina: 25,
       somenteIda: false,
@@ -30,10 +32,17 @@ export class BuscaComponent implements OnInit {
       ? this.formBusca.obterDadosDeBusca()
       : buscaPadrao;
 
-    this.passagemService.getPassagens(busca).subscribe((res) => {
-      console.log(res);
-      this.passagens = res.resultado;
-    });
+    this.passagemService
+      .getPassagens(busca)
+      .pipe(take(1))
+      .subscribe((res) => {
+        console.log(res);
+        this.passagens = res.resultado;
+        this.formBusca.formBusca.patchValue({
+          precoMin: res.precoMin,
+          precoMax: res.precoMax,
+        });
+      });
   }
 
   busca(ev: DadosDeBusca) {

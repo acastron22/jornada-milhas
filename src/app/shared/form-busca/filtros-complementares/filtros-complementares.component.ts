@@ -9,7 +9,7 @@ import { FormBuscaService } from 'src/app/core/servicos/form-busca.service';
 export class FiltrosComplementaresComponent {
 
   @Output() realizarBusca = new EventEmitter();
-  constructor(private formBuscaService: FormBuscaService) {}
+  constructor(public formBuscaService: FormBuscaService) {}
 
   busca() {
     if (!this.formBuscaService.formValid) {

@@ -8,7 +8,7 @@ import { iOpcoes } from 'src/app/core/models/iOpcoes';
   templateUrl: './paradas.component.html',
   styleUrls: ['./paradas.component.scss'],
 })
-export class ParadasComponent implements OnInit{
+export class ParadasComponent implements OnInit {
   opcoesSelecionadas: iOpcoes | null = null;
   opcoes: iOpcoes[] = [
     {
@@ -36,12 +36,35 @@ export class ParadasComponent implements OnInit{
       this.FormBuscaService.obterControle<number>('conexoes');
   }
   ngOnInit(): void {
-    this.conexoesControl.valueChanges.subscribe(
-      (value) => {
-        if (!value) {
-          this.opcoesSelecionadas = null
-        }
+    this.conexoesControl.valueChanges.subscribe((value) => {
+      if (!value) {
+        this.opcoesSelecionadas = null;
       }
-    )
+    });
+  }
+
+  alternarParada(opcao: iOpcoes, checked: boolean) {
+    if (!checked) {
+      this.opcoesSelecionadas = null;
+      this.FormBuscaService.formBusca.patchValue({
+        conexoes: null,
+      });
+      return;
+    }
+    this.opcoesSelecionadas = opcao;
+    this.FormBuscaService.formBusca.patchValue({
+      conexoes: Number(opcao.value),
+    });
+  }
+
+  paradaSelecionada(opcao: iOpcoes): boolean {
+    return this.opcoesSelecionadas === opcao;
+  }
+
+  incluirParada(opcao: iOpcoes) {
+    if (!this.opcoesSelecionadas) {
+      return false;
+    }
+    return this.opcoesSelecionadas.value > opcao.value;
   }
 }

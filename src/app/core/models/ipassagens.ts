@@ -33,6 +33,6 @@ export interface iOrcamento {
 }
 
 export interface iCompanhia {
-  id: number;
+  id: string;
   nome: string;
 }

@@ -1,10 +1,10 @@
+import { DadosDeBusca } from 'src/app/core/models/dados-de-busca';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipSelectionChange } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
-import { DadosDeBusca } from '../models/dados-de-busca';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,10 @@ export class FormBuscaService {
       bebes: new FormControl(0),
       dataIda: new FormControl(new Date(), [Validators.required]),
       dataVolta,
-      conexoes: new FormControl(null)
+      conexoes: new FormControl(null),
+      companhias: new FormControl(null),
+      precoMin: new FormControl(null),
+      precoMax: new FormControl(null),
     });
 
     somenteIda.valueChanges.subscribe((somenteida) => {
@@ -107,6 +110,22 @@ export class FormBuscaService {
       dadosBusca.conexoes = conexoesControl.value;
     }
 
+    const companhiasControl = this.obterControle<number[]>('companhias');
+    if (companhiasControl.value) {
+      dadosBusca.companhiasId = companhiasControl.value;
+    }
+
+    const precoMinControl = this.obterControle<number>('precoMin');
+    if(precoMinControl.value)
+    {
+      dadosBusca.precoMin = precoMinControl.value
+    }
+
+    const precoMaxControl = this.obterControle<number>('precoMax');
+    if(precoMaxControl.value)
+    {
+      dadosBusca.precoMax = precoMaxControl.value
+    }
     return dadosBusca;
   }
 

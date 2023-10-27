@@ -6,10 +6,10 @@ export interface iResultado {
   total: number;
   precoMin: number;
   precoMax: number;
-  resultado: iPassagem[];
+  resultado: iPassagens[];
 }
 
-export interface iPassagem {
+export interface iPassagens {
   tipo: string;
   precoIda: number;
   precoVolta: number;
@@ -26,7 +26,7 @@ export interface iPassagem {
 }
 
 export interface iCompanhias {
-  id: number;
+  id: string;
   nome: string;
 }
 
