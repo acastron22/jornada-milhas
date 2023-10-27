@@ -48,6 +48,7 @@ import { CompanhiasComponent } from './shared/form-busca/filtros-complementares/
 import { LabelComponent } from './shared/form-busca/filtros-complementares/label/label.component';
 import { ParadasComponent } from './shared/form-busca/filtros-complementares/paradas/paradas.component';
 import { PrecosComponent } from './shared/form-busca/filtros-complementares/precos/precos.component';
+import { DestaquesComponent } from './shared/destaques/destaques.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { PrecosComponent } from './shared/form-busca/filtros-complementares/prec
     LabelComponent,
     ParadasComponent,
     PrecosComponent,
+    DestaquesComponent,
   ],
   imports: [
     BrowserModule,

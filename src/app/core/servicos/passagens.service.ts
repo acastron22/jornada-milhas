@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { iResultado } from '../models/iresultados';
 import { Observable, map, take } from 'rxjs';
 import { DadosDeBusca } from '../models/dados-de-busca';
+import { iPassagens } from '../models/ipassagens';
+import { IRecomendados } from '../models/iRecomendados';
 
 @Injectable({
   providedIn: 'root',
@@ -40,4 +42,29 @@ export class PassagensService {
       .join('&');
     return query;
   }
+
+  obterPassagensDestaques(passagem: iPassagens[]): IRecomendados | undefined {
+    if (!passagem.length) {
+      return undefined;
+    }
+    let ordenadoPorTempo = [...passagem].sort(
+      (a, b) => a.tempoVoo - b.tempoVoo
+    );
+    let ordenadoPorPreco = [...passagem].sort((a, b) => a.total - b.total);
+
+    let maisRapida = ordenadoPorTempo[0];
+    let maisBarata = ordenadoPorPreco[0];
+
+    let ordenadoPorMedia = [...passagem].sort((a, b) => {
+      let pontuacaoA =
+        (a.tempoVoo / maisBarata.tempoVoo + a.total / maisBarata.total) / 2;
+      let pontuacaoB =
+        (b.tempoVoo / maisBarata.total + b.total / maisBarata.total) / 2;
+      return pontuacaoA - pontuacaoB;
+    });
+    let sugerida = ordenadoPorMedia[0];
+
+    return { maisRapida, maisBarata, sugerida };
+  }
+
 }

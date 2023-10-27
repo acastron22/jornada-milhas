@@ -8,6 +8,10 @@
       gap: 24px;
 
   }
+  .destaques{
+    display: flex;
+    flex-direction: row;
+  }
 
   .passagens {
       flex-grow: 1;
